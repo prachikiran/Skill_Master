@@ -11,7 +11,7 @@ public class FileSplit {
 		String certPEM	= "cert.pem";
 	    File certPEMFile = new File(folder, certPEM);
 		String chainPEM = "chain.pem";
-		File chainPEMFile = new File(folder, chainPEM);
+		File chainPEMFile = new File(folder, chainPEM); 
 	        
 	    try {
 	    	   BufferedReader reader = new BufferedReader(new FileReader(certChainPEMFile));
