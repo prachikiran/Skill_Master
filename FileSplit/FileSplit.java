@@ -14,6 +14,10 @@ public class FileSplit {
 		File chainPEMFile = new File(folder, chainPEM); 
 	        
 	    try {
+	    	if (!isValidFile(certChainPEMFile)) {
+                System.out.println("Invalid PEM file.");
+                return;
+            }	
 	    	   BufferedReader reader = new BufferedReader(new FileReader(certChainPEMFile));
 	            String line = null;
 	            StringBuilder stringBuilder1 = new StringBuilder();
@@ -49,5 +53,22 @@ public class FileSplit {
 	            e.printStackTrace();
 	      	}
 	}
+	
+	private static boolean isValidFile(File file) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("-----BEGIN") && line.contains("-----END")) {
+                    reader.close();
+                    return true;
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }
