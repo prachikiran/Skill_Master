@@ -59,7 +59,7 @@ public class FileSplit {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				if (line.contains("-----BEGIN") && line.contains("-----END")) {
+				if (line.startsWith("-----BEGIN") && line.endsWith("END CERTIFICATE-----")) {
 					reader.close();
 					return true;
 				}
